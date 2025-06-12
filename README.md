@@ -138,4 +138,37 @@ No of Laundering Txns display a sudden shoot up on 28th day of the month, which 
 Year 2023 see a steady downward trend in the laundering activity, nearly 3.5%  than the previous year. Further investigation needed to point possible reason.
 
 
+
 ![tpv](https://github.com/user-attachments/assets/ae64e1c2-3bd9-4728-9892-9fd7a8b04604)
+
+
+
+**Risk Scoring and Feature Engineering**
+
+To enhance detection capabilities, a risk scoring model was developed using SQL feature engineering. This model calculates a total risk score for each transaction based on multiple factors:
+
+Cross-Border Score: Penalizes cross-country transactions with higher risk weights.
+
+`Amount Score:` Assigns higher scores to larger transactions.
+
+`Currency Score:` Flags transactions involving currency conversions.
+
+`Payment Type Score:` Prioritizes riskier payment modes like cash deposits and cross-border payments.
+
+`Geography Score:` Accounts for known high-risk jurisdictions like UAE, Panama, and Cayman Islands.
+
+`Temporal Score:` Flags repeated transactions between the same accounts within the same day.
+
+`Amount Pattern Score:` Detects possible structuring by flagging transactions just below typical reporting thresholds.
+
+Using these features, transactions were categorized into Low, Medium, and High-Risk Tiers.
+
+Additionally, a `Priority Review Flag` was applied to transactions that met specific high-risk criteria, enabling compliance teams to focus on urgent cases.
+
+The risk scoring model was deliberately applied to non-laundering transactions to simulate a real-world scenario where the model proactively identifies potentially suspicious activities not yet confirmed as laundering.
+
+![sql11](https://github.com/user-attachments/assets/7a7ef4f4-92d4-4423-9f63-a30b9a13e0cb)
+
+
+
+![rav](https://github.com/user-attachments/assets/16abc55f-365d-4329-b32e-159b5caa2c5b)
